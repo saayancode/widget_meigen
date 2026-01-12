@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日の名言</title>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      background: #faf6f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px;
+    }
+    .container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+    }
+    .glow {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, 
+        rgba(224, 146, 143, 0.8) 0%, 
+        rgba(200, 120, 130, 0.7) 100%
+      );
+      filter: blur(50px);
+      z-index: 0;
+    }
+    .quote-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 40px;
+    }
+    .quote-text {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.9;
+      color: #3a3a3a;
+      margin-bottom: 24px;
+    }
+    .author {
+      font-size: 13px;
+      color: #4a4a4a;
+      letter-spacing: 1px;
+    }
+    .author::before {
+      content: '— ';
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="glow"></div>
+    <div class="quote-content">
+      <div class="quote-text" id="quote"></div>
+      <div class="author" id="author"></div>
+    </div>
+  </div>
+
+  <script>
+    const quotes = [
+      {
+        text: "つまらないことでも、やってみよう。難しいことでも、頑張ってみよう。あなたが重ねたささやかな努力が、「不可能」を「可能」にする日がやってくるから。",
+        author: "ハローキティのニーチェ"
+      },
+      {
+        text: "困難な壁に立ち向かっても、自分を信じてやってみて。信じることで、心は今よりもっと強くなるから。",
+        author: "ハローキティのニーチェ"
+      },
+      {
+        text: "これからの毎日、あなたが経験することはあなたの人生という大地を歩く旅。旅先で出会う、いろいろな風景はすべて、自分をより深く理解するための、意味のあるもの。",
+        author: "ハローキティのニーチェ"
+      }
+    ];
+
+    function getDailyIndex() {
+      const today = new Date();
+      const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+      return seed % quotes.length;
+    }
+
+    function displayQuote() {
+      const index = getDailyIndex();
+      const quote = quotes[index];
+      document.getElementById('quote').textContent = quote.text;
+      document.getElementById('author').textContent = quote.author;
+    }
+
+    displayQuote();
+  </script>
+</body>
+</html>
