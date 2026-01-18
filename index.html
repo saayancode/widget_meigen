@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>今日の名言</title>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,51 +11,39 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Zen Maru Gothic', sans-serif;
-      background: #faf6f2;
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 40px;
+      padding: 20px;
     }
-    .container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .quote-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      padding: 16px 20px;
+      max-width: 250px;
       width: 100%;
-      max-width: 600px;
+      box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
     }
-    .glow {
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: linear-gradient(to bottom, 
-        rgba(224, 146, 143, 0.8) 0%, 
-        rgba(200, 120, 130, 0.7) 100%
-      );
-      filter: blur(50px);
-      z-index: 0;
-    }
-    .quote-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 60px 40px;
+    .category {
+      font-size: 9px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
     }
     .quote-text {
-      font-size: 18px;
-      font-weight: 500;
-      line-height: 1.9;
-      color: #3a3a3a;
-      margin-bottom: 24px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #fff;
+      margin-bottom: 12px;
     }
     .author {
-      font-size: 13px;
-      color: #4a4a4a;
-      letter-spacing: 1px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.8);
+      text-align: right;
     }
     .author::before {
       content: '— ';
@@ -64,39 +51,49 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="glow"></div>
-    <div class="quote-content">
-      <div class="quote-text" id="quote"></div>
-      <div class="author" id="author"></div>
-    </div>
+  <div class="quote-card">
+    <div class="category" id="category"></div>
+    <div class="quote-text" id="quote"></div>
+    <div class="author" id="author"></div>
   </div>
 
   <script>
+    // DB_名言集から取得したデータ
     const quotes = [
       {
-        text: "つまらないことでも、やってみよう。難しいことでも、頑張ってみよう。あなたが重ねたささやかな努力が、「不可能」を「可能」にする日がやってくるから。",
-        author: "ハローキティのニーチェ"
+        text: "どんな経験も、未来につながる。",
+        author: "ハローキティのニーチェ",
+        category: "人生"
       },
       {
-        text: "困難な壁に立ち向かっても、自分を信じてやってみて。信じることで、心は今よりもっと強くなるから。",
-        author: "ハローキティのニーチェ"
+        text: "「できる！」って、あなたが信じたら、きっとできる。",
+        author: "ハローキティのニーチェ",
+        category: "成長"
       },
       {
-        text: "これからの毎日、あなたが経験することはあなたの人生という大地を歩く旅。旅先で出会う、いろいろな風景はすべて、自分をより深く理解するための、意味のあるもの。",
-        author: "ハローキティのニーチェ"
+        text: "人生はさながら、旅のようなもの。自分という人生を体験する、終わりのない旅。",
+        author: "ハローキティのニーチェ",
+        category: "人生"
+      },
+      {
+        text: "本当の気持ちは、欲しいものを手に入れる魔法の杖。",
+        author: "ハローキティのニーチェ",
+        category: "成長"
       }
     ];
 
+    // 日付ベースの擬似ランダム（毎日同じ名言）
     function getDailyIndex() {
       const today = new Date();
       const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
       return seed % quotes.length;
     }
 
+    // 表示
     function displayQuote() {
       const index = getDailyIndex();
       const quote = quotes[index];
+      document.getElementById('category').textContent = quote.category;
       document.getElementById('quote').textContent = quote.text;
       document.getElementById('author').textContent = quote.author;
     }
