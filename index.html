@@ -40,13 +40,6 @@
       align-items: center;
       text-align: center;
     }
-    .category {
-      font-size: 2vw;
-      color: rgba(255,255,255,0.9);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 2vw;
-    }
     .quote-text {
       font-size: 3.2vw;
       line-height: 1.7;
@@ -65,7 +58,6 @@
 </head>
 <body>
   <div class="quote-card">
-    <div class="category" id="category"></div>
     <div class="quote-text" id="quote"></div>
     <div class="author" id="author"></div>
   </div>
@@ -103,7 +95,6 @@
     function displayQuote() {
       const index = getDailyIndex();
       const quote = quotes[index];
-      document.getElementById('category').textContent = quote.category;
       document.getElementById('quote').textContent = quote.text;
       document.getElementById('author').textContent = quote.author;
     }
