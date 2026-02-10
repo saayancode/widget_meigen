@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,41 +16,41 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
+      background: transparent;
     }
     body {
       font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-      background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
     .quote-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 50%, #FFD580 100%);
       border-radius: 16px;
       padding: 3vw 4vw;
-      width: 100%;
-      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
     }
     .category {
-      font-size: clamp(8px, 2vw, 14px);
+      font-size: clamp(8px, 2.5vw, 16px);
       color: rgba(255,255,255,0.9);
       text-transform: uppercase;
       letter-spacing: 1.5px;
       margin-bottom: 1.5vw;
     }
     .quote-text {
-      font-size: clamp(10px, 3vw, 20px);
-      line-height: 1.6;
+      font-size: clamp(11px, 3.5vw, 22px);
+      line-height: 1.7;
       color: #fff;
       margin-bottom: 2vw;
       text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
     .author {
-      font-size: clamp(8px, 2.2vw, 14px);
+      font-size: clamp(9px, 2.5vw, 16px);
       color: rgba(255,255,255,0.9);
       text-align: right;
     }
@@ -82,30 +81,4 @@
       {
         text: "人生はさながら、旅のようなもの。自分という人生を体験する、終わりのない旅。",
         author: "ハローキティのニーチェ",
-        category: "人生"
-      },
-      {
-        text: "本当の気持ちは、欲しいものを手に入れる魔法の杖。",
-        author: "ハローキティのニーチェ",
-        category: "成長"
-      }
-    ];
-
-    function getDailyIndex() {
-      const today = new Date();
-      const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-      return seed % quotes.length;
-    }
-
-    function displayQuote() {
-      const index = getDailyIndex();
-      const quote = quotes[index];
-      document.getElementById('category').textContent = quote.category;
-      document.getElementById('quote').textContent = quote.text;
-      document.getElementById('author').textContent = quote.author;
-    }
-
-    displayQuote();
-  </script>
-</body>
-</html>
+        categor
