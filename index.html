@@ -16,7 +16,12 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      background: transparent;
+      background: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      html, body {
+        background: #191919;
+      }
     }
     body {
       font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
@@ -29,30 +34,31 @@
       bottom: 0;
       background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 50%, #FFD580 100%);
       border-radius: 16px;
-      padding: 3vw 4vw;
+      padding: 5% 6%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
+      align-items: flex-start;
     }
     .category {
       font-size: clamp(8px, 2.5vw, 16px);
       color: rgba(255,255,255,0.9);
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      margin-bottom: 1.5vw;
+      margin-bottom: 4%;
     }
     .quote-text {
       font-size: clamp(11px, 3.5vw, 22px);
       line-height: 1.7;
       color: #fff;
-      margin-bottom: 2vw;
+      margin-bottom: 4%;
       text-shadow: 0 1px 2px rgba(0,0,0,0.1);
     }
     .author {
       font-size: clamp(9px, 2.5vw, 16px);
       color: rgba(255,255,255,0.9);
       text-align: right;
+      width: 100%;
     }
     .author::before {
       content: '— ';
@@ -81,4 +87,30 @@
       {
         text: "人生はさながら、旅のようなもの。自分という人生を体験する、終わりのない旅。",
         author: "ハローキティのニーチェ",
-        categor
+        category: "人生"
+      },
+      {
+        text: "本当の気持ちは、欲しいものを手に入れる魔法の杖。",
+        author: "ハローキティのニーチェ",
+        category: "成長"
+      }
+    ];
+
+    function getDailyIndex() {
+      const today = new Date();
+      const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+      return seed % quotes.length;
+    }
+
+    function displayQuote() {
+      const index = getDailyIndex();
+      const quote = quotes[index];
+      document.getElementById('category').textContent = quote.category;
+      document.getElementById('quote').textContent = quote.text;
+      document.getElementById('author').textContent = quote.author;
+    }
+
+    displayQuote();
+  </script>
+</body>
+</html>
